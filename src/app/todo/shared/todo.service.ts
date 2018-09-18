@@ -12,12 +12,7 @@ export class TodoService {
     
   }
 
-  getToDoList(){
-    this.todoList = this.db.collection('items').valueChanges();
-    return this.todoList;
-  }
-
-   getCat() {
+    getTitles() {
     return this.db.collection('items').snapshotChanges();
   }
 

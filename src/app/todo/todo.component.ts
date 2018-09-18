@@ -22,7 +22,7 @@ export class TodoComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.tds.getCat().subscribe((titleSnapshot) => {
+    this.tds.getTitles().subscribe((titleSnapshot) => {
       this.items = [];
       titleSnapshot.forEach((titleData: any) => {
         this.items.push({
@@ -33,20 +33,6 @@ export class TodoComponent implements OnInit{
     });
   }
 
-
-/*  getTitles(){
-    this.tds.getToDoList()
-    .subscribe((titles)=>{
-      
-      
-      this.items = titles;
-      console.log(this.items);
-      (error) => console.log(error);    
-  })
-  }
-*/
-
-
   agregarTitle(titulo){
   
     let data = { 
@@ -55,9 +41,9 @@ export class TodoComponent implements OnInit{
     if(this.titulo.length == 0){
       console.log("esta vacio");     
     }else{
+        this.titulo=""
         this.tds.addTitle(data).then( ()=>{
         console.log("Se creo, correctamente");
-        this.titulo=""
       })
       .catch ( (e)=>{
         console.log(e);  
