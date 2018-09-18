@@ -1,11 +1,13 @@
 Instalación
-Clonar el proyecto -- git clone https://github.com/jesusyegres/ToDoList-.git
+Clonar el proyecto <code> git clone https://github.com/jesusyegres/ToDoList-.git </code>
 
 Ejecutar
 npm install
 
-Configurar atributos del objeto firestore en el archivo environment.ts
+<code>environment.ts</code>
+
+Configurar atributos del objeto <b>firebase</b> en el archivo <code>environment.ts</code>
 
 Servir la aplicación
 
-ng serve
+<code>ng serve</code>
