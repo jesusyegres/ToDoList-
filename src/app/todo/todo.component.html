@@ -1,0 +1,24 @@
+<div class="jumbotron" style="padding: 45px 0px">
+  <h4 class="text-center">To do List?</h4>
+</div>
+
+<div class="input-group mb-3">
+  <input type="text" class="form-control" placeholder="Agregar Tarea" aria-label="Agregar Tarea" aria-describedby="basic-addon2" [(ngModel)]="titulo">
+  <div class="input-group-append">
+    <button class="btn btn-outline-secondary" type="button" (click)="agregarTitle(titulo)">Add</button>
+  </div>
+</div>
+
+<div style="margin:5px 0px">
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let item of items">
+      <span class="hover-cursor" [class.text-success]="item.isChecked" >
+        <i class="fa fa-lg" [ngClass]="item.isChecked?'fa-check-circle-o':'fa-circle-thin'"></i>
+      </span>
+      {{item.data.title}}
+      <span class="hover-cursor nope pull-right" >
+        <i class="fa fa-trash-o fa-lg"(click)="borrarTitle(item.id)"></i>
+      </span>
+    </li>
+  </ul>
+</div>
