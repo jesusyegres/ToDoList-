@@ -1,6 +1,9 @@
-import { Observable } from 'rxjs';
 import { TodoService } from './shared/todo.service';
+import { ToastService } from './shared/toast.service';
+
 import { Component, OnInit } from '@angular/core';
+
+
 
 
 @Component({
@@ -15,11 +18,7 @@ export class TodoComponent implements OnInit{
   
   public titulo:string = ""; //ModeL DEL TITLE o descripcion que se hara
 
-  constructor(private tds:TodoService) { 
-
-    //this.getTitles();
-
-  }
+  constructor(private tds:TodoService, private ts:ToastService) {}
 
   ngOnInit() {
     this.tds.getTitles().subscribe((titleSnapshot) => {
@@ -38,12 +37,13 @@ export class TodoComponent implements OnInit{
     let data = { 
       title: this.titulo
     }
+    
     if(this.titulo.length == 0){
-      console.log("esta vacio");     
+      this.ts.showWarning("Por favor, escribir una tarea","Campos vacios");   
     }else{
         this.titulo=""
         this.tds.addTitle(data).then( ()=>{
-        console.log("Se creo, correctamente");
+        this.ts.showSuccess(data.title,"Se creo, correctamente");
       })
       .catch ( (e)=>{
         console.log(e);  
@@ -55,7 +55,7 @@ export class TodoComponent implements OnInit{
 
   borrarTitle(id){
     this.tds.deleteTitle(id).then(() => {
-      console.log('Documento eliminado!');
+      this.ts.showError("Documento eliminado");
     }, (error) => {
       console.error(error);
     });

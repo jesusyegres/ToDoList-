@@ -6,13 +6,15 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TodoService {
+  
   todoList: Observable<any[]>;
+  
   constructor(private db:AngularFirestore) { 
     console.log("estoy en el servicio");
     
   }
 
-    getTitles() {
+  getTitles() {
     return this.db.collection('items').snapshotChanges();
   }
 
