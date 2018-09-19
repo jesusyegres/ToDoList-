@@ -14,7 +14,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodoComponent implements OnInit{
 
-  public items = [];
+  public items:any = [];
   
   public titulo:string = ""; //ModeL DEL TITLE o descripcion que se hara
 
@@ -26,7 +26,7 @@ export class TodoComponent implements OnInit{
       titleSnapshot.forEach((titleData: any) => {
         this.items.push({
           id: titleData.payload.doc.id,
-          data: titleData.payload.doc.data()
+          data: titleData.payload.doc.data() 
         });
       });
     });
@@ -35,7 +35,8 @@ export class TodoComponent implements OnInit{
   agregarTitle(titulo){
   
     let data = { 
-      title: this.titulo
+      title: this.titulo,
+      complete: false
     }
     
     if(this.titulo.length == 0){
@@ -60,5 +61,16 @@ export class TodoComponent implements OnInit{
       console.error(error);
     });
   }
+
+/*   public toggleChecks(documentId,completeid) {
+    completeid = !completeid
+    let editSubscribe = this.tds.getTitles().subscribe((change) => {
+      this.items.setValue({
+        id: documentId,
+        complete: completeid
+      });
+      editSubscribe.unsubscribe();
+    });
+  } */
 
 }

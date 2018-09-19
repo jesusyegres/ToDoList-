@@ -18,12 +18,17 @@ export class TodoService {
     return this.db.collection('items').snapshotChanges();
   }
 
-  addTitle(data: {title: string}){
+  addTitle(data: {title: string,complete:boolean}){
     return this.db.collection('items').add(data);
   }
+
 
   deleteTitle(documentId: string){
     return this.db.collection('items').doc(documentId).delete();
   }
+
+/*   checkoruncheck(documentId: string, data: any){
+      return this.db.collection('items').doc(documentId).set(data);
+  } */
 
 }
